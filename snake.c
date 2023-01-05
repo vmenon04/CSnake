@@ -6,14 +6,15 @@
 #include <fcntl.h>
 #include <sys/select.h>
 #include <termios.h>
+#include <curses.h>
 
-#define RED   "\x1B[31m"
-#define GRN   "\x1B[32m"
-#define YEL   "\x1B[33m"
-#define BLU   "\x1B[34m"
-#define MAG   "\x1B[35m"
-#define CYN   "\x1B[36m"
-#define WHT   "\x1B[37m"
+#define RED "\x1B[31m"
+#define GRN "\x1B[32m"
+#define YEL "\x1B[33m"
+#define BLU "\x1B[34m"
+#define MAG "\x1B[35m"
+#define CYN "\x1B[36m"
+#define WHT "\x1B[37m"
 #define RESET "\x1B[0m"
 
 #define ROWS 20
@@ -62,19 +63,19 @@ int kbhit(void)
     return 0;
 }
 
-void gameOverAnimation() {
+void gameOverAnimation()
+{
 
     const char *a[7] = {RED, GRN, YEL, BLU, MAG, CYN, WHT};
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         printf("%s", a[0]);
-        printf("Game Over!\n"     RESET);
+        printf("Game Over!\n" RESET);
         usleep(400000);
         system("clear");
         usleep(200000);
     }
-    
-
 }
 
 struct Apple
@@ -189,7 +190,6 @@ void moveSnake(char board[ROWS][COLS], struct SnakeSegment **snake, char directi
     current->next = NULL;
 }
 
-
 int main(int argc, char **argv)
 {
     char board[ROWS][COLS];
@@ -258,14 +258,13 @@ int main(int argc, char **argv)
             }
             printf("\n");
         }
-        
+
         printf("Score: %d\n", score);
 
         usleep(100000);
     }
 
     printf(YEL "Score: %d\n", score);
-
 
     return 0;
 }
