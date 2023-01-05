@@ -6,6 +6,7 @@
 #include <sys/select.h>
 #include <termios.h>
 
+#define BLK "\x1B[30m"
 #define RED "\x1B[31m"
 #define GRN "\x1B[32m"
 #define YEL "\x1B[33m"
@@ -29,6 +30,7 @@
 #define LEFT 'a'
 #define RIGHT 'd'
 
+#define BORDER '#'
 #define APPLE 'O'
 #define SNAKE 'X'
 
@@ -101,13 +103,13 @@ void drawBoard(char board[ROWS][COLS], struct SnakeSegment *snake, struct Apple 
 
     for (int col = LEFT_BOUNDARY; col <= RIGHT_BOUNDARY; col++)
     {
-        board[TOP_BOUNDARY][col] = '#';
-        board[BOTTOM_BOUNDARY][col] = '#';
+        board[TOP_BOUNDARY][col] = BORDER;
+        board[BOTTOM_BOUNDARY][col] = BORDER;
     }
     for (int row = TOP_BOUNDARY; row <= BOTTOM_BOUNDARY; row++)
     {
-        board[row][LEFT_BOUNDARY] = '#';
-        board[row][RIGHT_BOUNDARY] = '#';
+        board[row][LEFT_BOUNDARY] = BORDER;
+        board[row][RIGHT_BOUNDARY] = BORDER;
     }
 
     // draw snake
@@ -252,7 +254,24 @@ int main(int argc, char **argv)
         {
             for (int col = 0; col < COLS; col++)
             {
-                printf("%c ", board[row][col]);
+                char item = board[row][col];
+                if (item == BORDER) {
+                    printf(BLK);
+                    printf("%c ", item);
+                    printf(RESET);
+                }
+                else if (item == APPLE) {
+                    printf(RED);
+                    printf("%c ", item);
+                    printf(RESET);
+                }
+                else if (item == SNAKE) {
+                    printf(WHT);
+                    printf("%c ", item);
+                    printf(RESET);
+                }
+                else
+                    printf("%c ", board[row][col]);
             }
             printf("\n");
         }
