@@ -256,7 +256,7 @@ int main(int argc, char **argv)
             {
                 char item = board[row][col];
                 if (item == BORDER) {
-                    printf(BLK);
+                    printf(WHT);
                     printf("%c ", item);
                     printf(RESET);
                 }
