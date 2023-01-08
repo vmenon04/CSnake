@@ -11,3 +11,5 @@ If the snake runs into a wall or its own body, the game will be over. The player
 
 ## Good luck!
 I hope you have fun playing the Snake game.
+
+![Snake Gif](https://github.com/vmenon04/CSnake/blob/main/snake_demo.gif)
